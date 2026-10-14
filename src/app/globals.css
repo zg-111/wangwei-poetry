@@ -1318,3 +1318,269 @@ footer p { margin-left: 0 !important; margin-right: auto !important; }
   .section-flow { padding-top: 3.75rem !important; padding-bottom: 3.75rem !important; }
   footer { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
 }
+
+/* ============================================================
+   FINAL POLISH — editorial web rhythm, less “slide deck”
+   ============================================================ */
+
+/* Give the whole page a subtle reading spine so sections feel connected. */
+.site-canvas::before {
+  content: '';
+  position: fixed;
+  left: max(18px, calc((100vw - 1180px) / 2));
+  top: 104px;
+  bottom: 32px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(123,139,154,.16) 10%, rgba(123,139,154,.16) 90%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-flow::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(72vw, 760px);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(200,192,176,.35), transparent);
+}
+
+/* Poem cards: metadata + stronger editorial hierarchy */
+.poem-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.15rem;
+  color: #8B857A;
+  font-size: .62rem;
+  letter-spacing: .18em;
+}
+
+.poem-number {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: .9rem;
+  letter-spacing: .08em;
+  color: rgba(184, 66, 58, .72);
+}
+
+.poem-kind {
+  border-bottom: 1px solid rgba(123,139,154,.28);
+  padding-bottom: .18rem;
+}
+
+.editorial-poem-grid > :nth-child(2) { margin-top: 2.2rem; }
+.editorial-poem-grid > :nth-child(4) { margin-top: 1.5rem; }
+
+.poem-featured h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); }
+.poem-featured .ink-poem { font-size: .96rem; }
+
+/* Imagery browser — index on the left, reading panel on the right. */
+.imagery-layout-v2 {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.imagery-heading-v2 {
+  max-width: 520px;
+  margin-left: auto;
+}
+
+.imagery-browser {
+  display: grid;
+  grid-template-columns: minmax(250px, .82fr) minmax(0, 1.55fr);
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  align-items: stretch;
+}
+
+.imagery-index {
+  border-top: 1px solid rgba(200,192,176,.8);
+}
+
+.imagery-index-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 34px 42px minmax(0, 1fr) 18px;
+  align-items: center;
+  gap: .75rem;
+  padding: .9rem .35rem;
+  text-align: left;
+  color: #5A5A5A;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(200,192,176,.55);
+  cursor: pointer;
+  transition: padding .35s ease, color .35s ease, background .35s ease;
+}
+
+.imagery-index-item:hover,
+.imagery-index-item.is-active {
+  padding-left: .8rem;
+  color: #2C2C2C;
+  background: rgba(237,232,218,.48);
+}
+
+.imagery-index-item.is-active {
+  box-shadow: inset 2px 0 0 #B8423A;
+}
+
+.imagery-index-no {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #B8423A;
+  font-size: .72rem;
+}
+
+.imagery-index-icon svg { width: 32px; height: 32px; }
+.imagery-index-copy { min-width: 0; display: flex; flex-direction: column; gap: .2rem; }
+.imagery-index-copy strong { font-family: 'Noto Serif SC', serif; font-size: .95rem; letter-spacing: .12em; }
+.imagery-index-copy small { color: #8B857A; font-size: .68rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.imagery-index-arrow { color: #A9A295; transition: transform .3s ease, color .3s ease; }
+.imagery-index-item:hover .imagery-index-arrow,
+.imagery-index-item.is-active .imagery-index-arrow { transform: translate(2px,-2px); color: #B8423A; }
+
+.imagery-detail-panel {
+  position: relative;
+  min-height: 430px;
+  padding: clamp(1.6rem, 4vw, 3.4rem);
+  border: 1px solid rgba(200,192,176,.72);
+  background:
+    radial-gradient(circle at 86% 14%, rgba(123,139,154,.08), transparent 24%),
+    linear-gradient(150deg, rgba(245,240,230,.9), rgba(237,232,218,.68));
+  overflow: hidden;
+  animation: imageryPanelIn .45s ease both;
+}
+
+.imagery-detail-panel::after {
+  content: '';
+  position: absolute;
+  right: -60px;
+  bottom: -80px;
+  width: 260px;
+  height: 180px;
+  border: 1px solid rgba(123,139,154,.12);
+  border-radius: 50%;
+  transform: rotate(-10deg);
+}
+
+@keyframes imageryPanelIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.imagery-detail-topline {
+  display: flex;
+  justify-content: space-between;
+  color: #8B857A;
+  font-size: .66rem;
+  letter-spacing: .18em;
+  border-bottom: 1px solid rgba(200,192,176,.6);
+  padding-bottom: .75rem;
+  margin-bottom: 1.6rem;
+}
+
+.imagery-detail-icon { width: 62px; margin-bottom: .9rem; }
+.imagery-detail-icon svg { width: 62px; height: 62px; }
+.imagery-detail-desc { max-width: 620px; color: #5A5A5A; line-height: 1.9; margin: 1rem 0 2rem; }
+.imagery-lines { border-top: 1px solid rgba(200,192,176,.6); padding-top: 1.2rem; }
+.imagery-lines-label { color: #8B857A; font-size: .65rem; letter-spacing: .2em; margin-bottom: .85rem; }
+.imagery-line-row { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; align-items: baseline; padding: .48rem 0; }
+.imagery-line-row > span { color: #B8423A; font-size: .7rem; letter-spacing: .08em; }
+.imagery-line-row .ink-poem { font-size: .86rem; line-height: 1.75; }
+
+/* “Poetry in painting” reads more like an article than three equal slides. */
+.poetics-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 1px;
+  background: rgba(200,192,176,.5);
+  border: 1px solid rgba(200,192,176,.5);
+}
+
+.poetics-note {
+  position: relative;
+  background: rgba(245,240,230,.94);
+  min-height: 240px;
+}
+
+.poetics-note:first-child {
+  grid-row: span 2;
+  padding-top: 3rem;
+}
+
+.poetics-index {
+  position: absolute;
+  top: 1rem;
+  right: 1.15rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.4rem;
+  color: rgba(184,66,58,.22);
+  letter-spacing: .05em;
+}
+
+/* Footer becomes a real editorial footer, not another centered slide. */
+.site-footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid rgba(200,192,176,.7);
+  background: rgba(237,232,218,.34);
+}
+
+.footer-editorial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: end;
+}
+
+.footer-kicker {
+  color: #8B857A;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: .64rem;
+  letter-spacing: .18em;
+  margin-bottom: .7rem;
+}
+
+.footer-note {
+  max-width: 500px;
+  justify-self: end;
+  color: #777064;
+  font-size: .75rem;
+  line-height: 1.8;
+}
+
+.footer-tool-note {
+  margin-top: .55rem;
+  color: #AAA295;
+  font-size: .68rem;
+}
+
+/* Keyboard focus makes interaction feel intentional and accessible. */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(184,66,58,.65);
+  outline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .imagery-browser { grid-template-columns: 1fr; }
+  .imagery-index { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: rgba(200,192,176,.45); border-top: 0; }
+  .imagery-index-item { background: #F5F0E6; border-bottom: 0; min-height: 88px; }
+  .imagery-detail-panel { min-height: 380px; }
+  .poetics-grid { grid-template-columns: 1fr; }
+  .poetics-note:first-child { grid-row: auto; }
+  .footer-editorial { grid-template-columns: 1fr; gap: 1.4rem; }
+  .footer-note { justify-self: start; }
+}
+
+@media (max-width: 640px) {
+  .site-canvas::before { display: none; }
+  .editorial-poem-grid > :nth-child(2),
+  .editorial-poem-grid > :nth-child(4) { margin-top: 0; }
+  .imagery-index { grid-template-columns: 1fr; }
+  .imagery-index-item { grid-template-columns: 30px 38px minmax(0,1fr) 16px; padding: .75rem .5rem; }
+  .imagery-detail-panel { padding: 1.35rem; min-height: 340px; }
+  .imagery-line-row { grid-template-columns: 1fr; gap: .15rem; padding: .6rem 0; }
+  .imagery-line-row .ink-poem { font-size: .82rem; }
+  .poetics-note { min-height: auto; }
+}

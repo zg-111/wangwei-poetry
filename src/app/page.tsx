@@ -590,11 +590,17 @@ function PoemsSection() {
               <Link
                 key={poem.id}
                 href={`/poem/${poem.id}`}
+                aria-label={`阅读《${poem.title}》全文与赏析`}
                 className={`poem-scroll p-6 md:p-8 block group ${idx < 2 ? 'lg:col-span-3 poem-featured' : 'lg:col-span-2'}`}
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 {/* 水墨图形装饰 */}
                 {poemArt[poem.id]}
+
+                <div className="poem-card-meta">
+                  <span className="poem-number">0{idx + 1}</span>
+                  <span className="poem-kind">山水诗笺</span>
+                </div>
 
                 {/* 诗笺题头 */}
                 <div className="poem-epigraph" />
@@ -644,98 +650,65 @@ function PoemsSection() {
    Section: Imagery
    ============================================================ */
 function ImagerySection() {
-  const [activeImagery, setActiveImagery] = useState<string | null>(null);
+  const [activeImagery, setActiveImagery] = useState<string>(imageryList[0]?.id ?? '');
+  const item = imageryList.find((i) => i.id === activeImagery) ?? imageryList[0];
 
   return (
     <section id="imagery" className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6">
       <FadeInSection>
-        <div className="max-w-5xl mx-auto imagery-layout">
-          <div className="editorial-heading editorial-right mb-14 imagery-heading">
+        <div className="max-w-5xl mx-auto imagery-layout-v2">
+          <div className="editorial-heading editorial-right imagery-heading-v2">
+            <p className="hero-kicker">意象索引 · 六景</p>
             <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
               <span className="title-line" />
               诗中意象
               <span className="title-line right" />
             </h2>
-            <p className="ink-quote-sub text-sm mt-4">
-              万物皆有情，意象见禅心
-            </p>
-            <div className="ink-divider mt-6" />
+            <p className="ink-quote-sub text-sm mt-4">万物皆有情，意象见禅心</p>
           </div>
 
-          {/* Imagery cards grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 mb-8 max-w-3xl mx-auto imagery-editorial-grid">
-            {imageryList.map((item) => (
-              <button
-                key={item.id}
-                onClick={() =>
-                  setActiveImagery(activeImagery === item.id ? null : item.id)
-                }
-                className={`imagery-card ink-card min-h-[132px] p-3 sm:p-4 md:p-5 text-center flex flex-col items-center justify-center gap-2 ${
-                  activeImagery === item.id ? 'border-[#B8423A] !border-opacity-60' : ''
-                }`}
-              >
-                {/* Icon */}
-                <ImageryIcon id={item.id} />
-
-                {/* Name */}
-                <span
-                  className={`ink-title text-base md:text-lg transition-colors duration-300 ${
-                    activeImagery === item.id ? 'text-[#B8423A]' : ''
-                  }`}
+          <div className="imagery-browser" aria-label="王维诗歌意象浏览器">
+            <div className="imagery-index" role="tablist" aria-label="意象目录">
+              {imageryList.map((entry, idx) => (
+                <button
+                  key={entry.id}
+                  role="tab"
+                  aria-selected={activeImagery === entry.id}
+                  onClick={() => setActiveImagery(entry.id)}
+                  className={`imagery-index-item ${activeImagery === entry.id ? 'is-active' : ''}`}
                 >
-                  {item.name}
-                </span>
-
-                {/* Hover line */}
-                <span className="hover-line text-[10px] text-[#7B8B9A] leading-tight mt-1">
-                  {item.hoverLine}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* Expanded detail */}
-          {activeImagery && (
-            <div className="mt-8 ink-card p-6 md:p-10" style={{ animation: 'staggerFadeIn 0.4s ease both' }}>
-              {(() => {
-                const item = imageryList.find((i) => i.id === activeImagery);
-                if (!item) return null;
-                return (
-                  <div>
-                    <div className="flex items-center justify-center gap-3 mb-4">
-                      <ImageryIcon id={item.id} />
-                      <h3 className="ink-title text-xl md:text-2xl">
-                        {item.name}
-                      </h3>
-                    </div>
-                    <div className="ink-divider mb-6" />
-                    <p className="text-[#5A5A5A] leading-relaxed mb-8 text-center max-w-2xl mx-auto text-sm md:text-base">
-                      {item.description}
-                    </p>
-                    <div className="space-y-3">
-                      <p className="text-[#7B8B9A] text-xs text-center mb-4 tracking-wider">
-                        相关诗句
-                      </p>
-                      {item.poems.map((p, idx) => (
-                        <div
-                          key={idx}
-                          className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3"
-                        >
-                          <span className="text-[#B8423A] text-xs">
-                            {p.poemTitle}
-                          </span>
-                          <span className="text-[#C8C0B0] hidden sm:inline">|</span>
-                          <span className="ink-poem text-sm">
-                            {p.line}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()}
+                  <span className="imagery-index-no">0{idx + 1}</span>
+                  <span className="imagery-index-icon"><ImageryIcon id={entry.id} /></span>
+                  <span className="imagery-index-copy">
+                    <strong>{entry.name}</strong>
+                    <small>{entry.hoverLine}</small>
+                  </span>
+                  <span className="imagery-index-arrow">↗</span>
+                </button>
+              ))}
             </div>
-          )}
+
+            {item && (
+              <article className="imagery-detail-panel" role="tabpanel" key={item.id}>
+                <div className="imagery-detail-topline">
+                  <span>意象释义</span>
+                  <span>{item.name}</span>
+                </div>
+                <div className="imagery-detail-icon"><ImageryIcon id={item.id} /></div>
+                <h3 className="ink-title text-2xl md:text-4xl">{item.name}</h3>
+                <p className="imagery-detail-desc">{item.description}</p>
+                <div className="imagery-lines">
+                  <p className="imagery-lines-label">相关诗句</p>
+                  {item.poems.map((poemItem, idx) => (
+                    <div key={idx} className="imagery-line-row">
+                      <span>{poemItem.poemTitle}</span>
+                      <p className="ink-poem">{poemItem.line}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            )}
+          </div>
         </div>
       </FadeInSection>
     </section>
@@ -784,8 +757,9 @@ function PoetryInPaintingSection() {
                 title: '画面感的秘密',
                 text: '王维诗歌的画面感来自三个要素：一曰色彩——明暗对比的视觉张力；二曰声响——以动衬静，泉声鸟鸣更显空幽；三曰留白——不写满，不写尽，给读者以想象的空间。三者合一，便成就了\u201C诗中有画\u201D的永恒魅力。',
               },
-            ].map((item) => (
+            ].map((item, idx) => (
               <article key={item.title} className="poetics-note p-6 md:p-8">
+                <div className="poetics-index">0{idx + 1}</div>
                 <h3 className="ink-title text-lg mb-4 flex items-center gap-3 section-head">
                   <span className="title-seal">{item.title.slice(0, 1)}</span>
                   {item.title}
@@ -891,18 +865,17 @@ function InteractiveSection() {
    ============================================================ */
 function Footer() {
   return (
-    <footer className="py-14 md:py-20 px-4 sm:px-6 text-center relative">
-      <div className="ink-divider mb-8" />
-      <p className="ink-poem text-lg md:text-xl mb-4">
-        诗中有画，画中有诗。
-      </p>
-      <p className="text-[#7B8B9A] text-xs tracking-[0.2em] mb-3">
-        王维的山水诗世界
-      </p>
-      <p className="text-[#A9A295] text-xs leading-relaxed max-w-md mx-auto">
-        本网页以王维山水诗为主题，通过水墨视觉与交互设计呈现
-        &ldquo;诗中有画&rdquo;的审美意境。
-      </p>
+    <footer className="site-footer px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto footer-editorial">
+        <div>
+          <p className="footer-kicker">WANG WEI · LANDSCAPE POETRY</p>
+          <p className="ink-poem text-lg md:text-xl">诗中有画，画中有诗。</p>
+        </div>
+        <div className="footer-note">
+          <p>本网页以王维山水诗为主题，通过水墨视觉与交互设计呈现“诗中有画”的审美意境。</p>
+          <p className="footer-tool-note">课程网页 · AI 编程工具辅助设计与开发</p>
+        </div>
+      </div>
     </footer>
   );
 }
