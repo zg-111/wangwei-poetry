@@ -1145,3 +1145,176 @@ section[id] {
     padding-right: .75rem;
   }
 }
+
+/* ============================================================
+   Web-first editorial v2 — deliberately reduce slide-deck feeling
+   ============================================================ */
+.hero-mobile-safe {
+  min-height: min(88svh, 860px) !important;
+}
+
+.hero-editorial {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: center;
+  padding-inline: clamp(.25rem, 2vw, 1rem);
+}
+
+.hero-copy {
+  text-align: left;
+  padding-left: clamp(0rem, 3vw, 3rem);
+}
+
+.hero-copy .hero-title {
+  margin: .65rem 0 1rem;
+}
+
+.hero-copy .hero-subtitle {
+  margin-bottom: 1.75rem;
+}
+
+.hero-kicker {
+  color: #B8423A;
+  font-size: .72rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+
+.hero-intro {
+  max-width: 34rem;
+  color: #6f6b63;
+  font-size: .95rem;
+  line-height: 2;
+  letter-spacing: .04em;
+}
+
+.hero-verse-panel {
+  position: relative;
+  padding: clamp(2rem, 4vw, 3rem);
+  border-left: 1px solid rgba(184,66,58,.45);
+  background: linear-gradient(135deg, rgba(237,232,218,.45), rgba(245,240,230,.12));
+  text-align: left;
+}
+
+.hero-panel-label {
+  display: inline-block;
+  margin-bottom: 1.75rem;
+  color: #B8423A;
+  font-size: .72rem;
+  letter-spacing: .22em;
+}
+
+.hero-panel-rule {
+  width: 3rem;
+  height: 1px;
+  margin: 1.35rem 0;
+  background: linear-gradient(90deg, #B8423A, transparent);
+}
+
+.hero-panel-note {
+  color: #7B8B9A;
+  font-size: .78rem;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+}
+
+/* Let sections read as chapters in one page, not centered slides. */
+.section-flow {
+  padding-top: clamp(4.25rem, 8vw, 7.25rem) !important;
+  padding-bottom: clamp(4.25rem, 8vw, 7.25rem) !important;
+}
+
+.editorial-heading {
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem) !important;
+}
+
+/* More asymmetry in the poem collection. */
+@media (min-width: 1024px) {
+  .editorial-poem-grid .poem-scroll:nth-child(2) { transform: translateY(2.5rem); }
+  .editorial-poem-grid .poem-scroll:nth-child(4) { transform: translateY(1.5rem); }
+  .editorial-poem-grid { padding-bottom: 2.5rem; }
+}
+
+/* Imagery reads like an index instead of six presentation tiles. */
+@media (min-width: 900px) {
+  .imagery-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+  }
+  .imagery-heading {
+    position: sticky;
+    top: 8rem;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  .imagery-heading .section-title { justify-content: flex-start !important; }
+  .imagery-heading .ink-divider { margin-left: 0 !important; margin-right: auto !important; }
+  .imagery-editorial-grid {
+    max-width: none !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    margin-bottom: 0 !important;
+  }
+  .imagery-layout > .ink-card,
+  .imagery-layout > div:last-child { grid-column: 2; }
+}
+
+.random-editorial {
+  background: none !important;
+  border-top: 1px solid rgba(200,192,176,.7);
+  border-bottom: 1px solid rgba(200,192,176,.55);
+}
+
+.random-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: start;
+  text-align: left;
+}
+
+.random-intro {
+  padding-top: .4rem;
+  position: sticky;
+  top: 8rem;
+}
+
+.random-stage {
+  padding-left: clamp(1.5rem, 4vw, 3.5rem);
+  border-left: 1px solid rgba(200,192,176,.7);
+}
+
+.random-stage .ink-poem,
+.random-stage p {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+footer {
+  text-align: left !important;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+footer .ink-divider { margin-left: 0; margin-right: auto; }
+footer p { margin-left: 0 !important; margin-right: auto !important; }
+
+@media (max-width: 899px) {
+  .hero-mobile-safe { min-height: auto !important; padding-top: 7.5rem !important; }
+  .hero-editorial { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-copy { padding-left: 0; text-align: left; }
+  .hero-verse-panel { max-width: 34rem; }
+  .random-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .random-intro { position: static; }
+  .random-stage { padding-left: 0; border-left: 0; border-top: 1px solid rgba(200,192,176,.7); padding-top: 2rem; }
+}
+
+@media (max-width: 640px) {
+  .hero-copy .hero-title { font-size: clamp(2.7rem, 15vw, 4.2rem); }
+  .hero-intro { font-size: .88rem; }
+  .hero-verse-panel { padding: 1.5rem 1.25rem; }
+  .section-flow { padding-top: 3.75rem !important; padding-bottom: 3.75rem !important; }
+  footer { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+}

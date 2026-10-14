@@ -338,37 +338,30 @@ function HeroSection() {
       {/* Water flow at bottom */}
       <WaterFlowSVG className="absolute bottom-32 left-1/4 hidden md:block" />
 
-      {/* Main content */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto">
-        {/* Top decorative line */}
-        <div className="ink-divider mb-10 md:mb-16" />
-
-        {/* Main title */}
-        <h1 className="ink-title text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl mb-5 md:mb-6 leading-tight hero-title">
-          诗中有画
-        </h1>
-
-        {/* Subtitle */}
-        <p className="ink-subtitle text-xs sm:text-sm md:text-base mb-12 md:mb-20 hero-subtitle">
-          王维的山水诗世界
-        </p>
-
-        {/* Featured verse with animation */}
-        <div className="verse-animate">
-          <div className="relative inline-block">
-            <p className="ink-poem text-lg md:text-2xl tracking-wider">
-              明月松间照，清泉石上流。
-            </p>
-            <div className="mt-4 flex justify-center">
-              <div className="w-12 h-px bg-gradient-to-r from-transparent via-[#C8C0B0] to-transparent" />
-            </div>
-          </div>
+      {/* Main content — editorial split layout */}
+      <div className="hero-editorial relative z-10 w-full max-w-6xl mx-auto">
+        <div className="hero-copy">
+          <p className="hero-kicker">唐 · 山水田园</p>
+          <h1 className="ink-title text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-tight hero-title">
+            诗中有画
+          </h1>
+          <p className="ink-subtitle text-xs sm:text-sm md:text-base hero-subtitle">
+            王维的山水诗世界
+          </p>
+          <p className="hero-intro">
+            沿着空山、明月与清泉，进入王维笔下安静而辽阔的山水世界。
+          </p>
         </div>
 
-        {/* Seal */}
-        <div className="mt-10 md:mt-16 flex justify-center">
+        <aside className="hero-verse-panel verse-animate" aria-label="王维代表诗句">
+          <span className="hero-panel-label">山居秋暝</span>
+          <p className="ink-poem text-xl md:text-2xl tracking-wider">
+            明月松间照，<br />清泉石上流。
+          </p>
+          <div className="hero-panel-rule" />
+          <p className="hero-panel-note">光与声，一静一动；十字之间，自成一幅山水。</p>
           <div className="ink-seal">摩诘</div>
-        </div>
+        </aside>
       </div>
 
       {/* Mountains */}
@@ -400,7 +393,7 @@ function PoetSection() {
   return (
     <section id="poet" className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6">
       <FadeInSection>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Section header */}
           <div className="editorial-heading editorial-left mb-12 md:mb-14">
             <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
@@ -656,8 +649,8 @@ function ImagerySection() {
   return (
     <section id="imagery" className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6">
       <FadeInSection>
-        <div className="max-w-4xl mx-auto">
-          <div className="editorial-heading editorial-right mb-14">
+        <div className="max-w-5xl mx-auto imagery-layout">
+          <div className="editorial-heading editorial-right mb-14 imagery-heading">
             <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
               <span className="title-line" />
               诗中意象
@@ -830,16 +823,18 @@ function InteractiveSection() {
   return (
     <section id="random" className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6 relative">
       <FadeInSection>
-        <div className="max-w-3xl mx-auto random-editorial text-center">
-          <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
-            <span className="title-line" />
-            随机遇见一句王维
-            <span className="title-line right" />
-          </h2>
-          <div className="ink-divider mt-6 mb-12" />
+        <div className="max-w-5xl mx-auto random-editorial random-layout">
+          <div className="random-intro">
+            <p className="hero-kicker">互动 · 一次偶遇</p>
+            <h2 className="ink-title text-2xl md:text-3xl mb-4">随机遇见一句王维</h2>
+            <p className="text-[#7B8B9A] text-sm leading-relaxed">
+              每次点击，都从王维的山水与禅意中抽取一瞬。不是翻页，而像在长卷中偶然停步。
+            </p>
+          </div>
 
+          <div className="random-stage">
           {/* Display area */}
-          <div className="min-h-[190px] md:min-h-[220px] flex flex-col items-center justify-center mb-8 md:mb-12">
+          <div className="min-h-[190px] md:min-h-[220px] flex flex-col items-start justify-center mb-8 md:mb-10">
             {currentLine ? (
               <div
                 className={`transition-all duration-500 ${
@@ -884,6 +879,7 @@ function InteractiveSection() {
           >
             {hasInteracted ? '再遇一句' : '随机遇见'}
           </button>
+          </div>
         </div>
       </FadeInSection>
     </section>
