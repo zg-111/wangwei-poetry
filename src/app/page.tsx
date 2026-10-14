@@ -243,7 +243,7 @@ function Navigation() {
         scrolled ? 'nav-scrolled py-3' : 'py-5 bg-transparent'
       }`}
     >
-      <div className="max-w-5xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
         <button
           onClick={() => handleNavClick('#hero')}
@@ -269,7 +269,7 @@ function Navigation() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden bg-transparent border-none cursor-pointer p-2"
+          className="md:hidden bg-transparent border-none cursor-pointer w-11 h-11 flex items-center justify-center"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="菜单"
         >
@@ -294,7 +294,7 @@ function Navigation() {
       <div
         className={`md:hidden ${mobileOpen ? 'mobile-menu-open' : 'mobile-menu-closed'}`}
       >
-        <div className="px-6 py-4 bg-[#F5F0E6]/95 backdrop-blur-sm border-t border-[#C8C0B0]/30">
+        <div className="px-4 sm:px-6 py-3 bg-[#F5F0E6]/95 backdrop-blur-sm border-t border-[#C8C0B0]/30 shadow-[0_12px_30px_rgba(44,44,44,0.06)]">
           {navItems.map((item) => (
             <button
               key={item.href}
@@ -319,7 +319,7 @@ function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
+      className="hero-mobile-safe relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 pt-20 pb-24"
     >
       {/* Moon */}
       <div className="absolute top-20 right-8 md:top-28 md:right-32">
@@ -341,15 +341,15 @@ function HeroSection() {
       {/* Main content */}
       <div className="relative z-10 text-center max-w-3xl mx-auto">
         {/* Top decorative line */}
-        <div className="ink-divider mb-16" />
+        <div className="ink-divider mb-10 md:mb-16" />
 
         {/* Main title */}
-        <h1 className="ink-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 leading-tight hero-title">
+        <h1 className="ink-title text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl mb-5 md:mb-6 leading-tight hero-title">
           诗中有画
         </h1>
 
         {/* Subtitle */}
-        <p className="ink-subtitle text-xs sm:text-sm md:text-base mb-20 hero-subtitle">
+        <p className="ink-subtitle text-xs sm:text-sm md:text-base mb-12 md:mb-20 hero-subtitle">
           王维的山水诗世界
         </p>
 
@@ -366,7 +366,7 @@ function HeroSection() {
         </div>
 
         {/* Seal */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-10 md:mt-16 flex justify-center">
           <div className="ink-seal">摩诘</div>
         </div>
       </div>
@@ -375,7 +375,7 @@ function HeroSection() {
       <InkMountainsHero />
 
       {/* Scroll cue - 题签式设计 */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+      <div className="absolute bottom-5 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2">
         <div className="scroll-cue">
           <span>向下探索</span>
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="cue-arrow">
@@ -398,11 +398,11 @@ function HeroSection() {
    ============================================================ */
 function PoetSection() {
   return (
-    <section id="poet" className="py-24 md:py-36 px-6">
+    <section id="poet" className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6">
       <FadeInSection>
         <div className="max-w-3xl mx-auto">
           {/* Section header */}
-          <div className="text-center mb-12 md:mb-14">
+          <div className="editorial-heading editorial-left mb-12 md:mb-14">
             <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
               <span className="title-line" />
               诗人小传
@@ -415,7 +415,7 @@ function PoetSection() {
           </div>
 
           {/* Content layout: left silhouette + right text */}
-          <div className="flex flex-col md:flex-row gap-8 md:gap-14 items-center mb-14">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-14 items-center mb-10 md:mb-14">
             {/* Silhouette area */}
             <div className="flex-shrink-0 flex flex-col items-center gap-5 poet-figure">
               {/* Poet silhouette - 水墨文人半身剪影 */}
@@ -465,7 +465,7 @@ function PoetSection() {
 
             {/* Text content */}
             <div className="flex-1 text-center md:text-left">
-              <div className="space-y-5 text-[#5A5A5A] leading-loose text-base">
+              <div className="space-y-4 md:space-y-5 text-[#5A5A5A] leading-loose text-sm sm:text-base">
                 <p>
                   王维（701—761），字摩诘。唐代诗人、画家，被尊为&ldquo;诗佛&rdquo;，与孟浩然并称&ldquo;王孟&rdquo;。
                 </p>
@@ -565,7 +565,7 @@ function PoemsSection() {
   };
 
   return (
-    <section id="poems" className="py-24 md:py-32 px-6 relative">
+    <section id="poems" className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6 relative">
       {/* Subtle background */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none">
         <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -580,7 +580,7 @@ function PoemsSection() {
 
       <FadeInSection>
         <div className="max-w-5xl mx-auto relative z-10">
-          <div className="text-center mb-14">
+          <div className="editorial-heading editorial-left mb-14">
             <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
               <span className="title-line" />
               代表诗作
@@ -592,12 +592,12 @@ function PoemsSection() {
             <div className="ink-divider mt-6" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5 md:gap-7 editorial-poem-grid">
             {poems.map((poem, idx) => (
               <Link
                 key={poem.id}
                 href={`/poem/${poem.id}`}
-                className="poem-scroll p-6 md:p-8 block group"
+                className={`poem-scroll p-6 md:p-8 block group ${idx < 2 ? 'lg:col-span-3 poem-featured' : 'lg:col-span-2'}`}
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 {/* 水墨图形装饰 */}
@@ -654,10 +654,10 @@ function ImagerySection() {
   const [activeImagery, setActiveImagery] = useState<string | null>(null);
 
   return (
-    <section id="imagery" className="py-24 md:py-36 px-6">
+    <section id="imagery" className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6">
       <FadeInSection>
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="editorial-heading editorial-right mb-14">
             <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
               <span className="title-line" />
               诗中意象
@@ -670,14 +670,14 @@ function ImagerySection() {
           </div>
 
           {/* Imagery cards grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 mb-8 max-w-3xl mx-auto imagery-editorial-grid">
             {imageryList.map((item) => (
               <button
                 key={item.id}
                 onClick={() =>
                   setActiveImagery(activeImagery === item.id ? null : item.id)
                 }
-                className={`imagery-card ink-card p-4 md:p-5 text-center flex flex-col items-center gap-2 ${
+                className={`imagery-card ink-card min-h-[132px] p-3 sm:p-4 md:p-5 text-center flex flex-col items-center justify-center gap-2 ${
                   activeImagery === item.id ? 'border-[#B8423A] !border-opacity-60' : ''
                 }`}
               >
@@ -754,7 +754,7 @@ function ImagerySection() {
    ============================================================ */
 function PoetryInPaintingSection() {
   return (
-    <section className="py-24 md:py-36 px-6 relative overflow-hidden">
+    <section className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <svg width="100%" height="100%" viewBox="0 0 800 600" preserveAspectRatio="none">
@@ -765,7 +765,7 @@ function PoetryInPaintingSection() {
 
       <FadeInSection>
         <div className="max-w-3xl mx-auto relative z-10">
-          <div className="text-center mb-14">
+          <div className="editorial-heading editorial-left mb-14">
             <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
               <span className="title-line" />
               &ldquo;诗中有画&rdquo;
@@ -777,7 +777,7 @@ function PoetryInPaintingSection() {
             <div className="ink-divider mt-6" />
           </div>
 
-          <div className="space-y-6">
+          <div className="poetics-grid">
             {[
               {
                 title: '以画入诗',
@@ -792,7 +792,7 @@ function PoetryInPaintingSection() {
                 text: '王维诗歌的画面感来自三个要素：一曰色彩——明暗对比的视觉张力；二曰声响——以动衬静，泉声鸟鸣更显空幽；三曰留白——不写满，不写尽，给读者以想象的空间。三者合一，便成就了\u201C诗中有画\u201D的永恒魅力。',
               },
             ].map((item) => (
-              <div key={item.title} className="ink-card p-6 md:p-8">
+              <article key={item.title} className="poetics-note p-6 md:p-8">
                 <h3 className="ink-title text-lg mb-4 flex items-center gap-3 section-head">
                   <span className="title-seal">{item.title.slice(0, 1)}</span>
                   {item.title}
@@ -800,7 +800,7 @@ function PoetryInPaintingSection() {
                 <p className="text-[#5A5A5A] leading-relaxed text-sm md:text-base">
                   {item.text}
                 </p>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -828,9 +828,9 @@ function InteractiveSection() {
   }, []);
 
   return (
-    <section id="random" className="py-24 md:py-36 px-6 relative">
+    <section id="random" className="section-flow py-16 sm:py-20 md:py-28 px-4 sm:px-6 relative">
       <FadeInSection>
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto random-editorial text-center">
           <h2 className="ink-title text-2xl md:text-3xl mb-4 section-title">
             <span className="title-line" />
             随机遇见一句王维
@@ -839,7 +839,7 @@ function InteractiveSection() {
           <div className="ink-divider mt-6 mb-12" />
 
           {/* Display area */}
-          <div className="min-h-[220px] flex flex-col items-center justify-center mb-12">
+          <div className="min-h-[190px] md:min-h-[220px] flex flex-col items-center justify-center mb-8 md:mb-12">
             {currentLine ? (
               <div
                 className={`transition-all duration-500 ${
@@ -880,7 +880,7 @@ function InteractiveSection() {
 
           <button
             onClick={getRandomLine}
-            className="ink-btn-filled"
+            className="ink-btn-filled min-h-11"
           >
             {hasInteracted ? '再遇一句' : '随机遇见'}
           </button>
@@ -895,7 +895,7 @@ function InteractiveSection() {
    ============================================================ */
 function Footer() {
   return (
-    <footer className="py-20 px-6 text-center relative">
+    <footer className="py-14 md:py-20 px-4 sm:px-6 text-center relative">
       <div className="ink-divider mb-8" />
       <p className="ink-poem text-lg md:text-xl mb-4">
         诗中有画，画中有诗。
@@ -916,7 +916,7 @@ function Footer() {
    ============================================================ */
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F5F0E6]">
+    <main className="site-canvas min-h-screen bg-[#F5F0E6]">
       <Navigation />
       <HeroSection />
       <PoetSection />

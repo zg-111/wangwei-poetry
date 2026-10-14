@@ -1,4 +1,3 @@
-@import "https://fonts.googleapis.cn/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap";
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -768,5 +767,381 @@ body {
 
   .ink-quote-sub {
     letter-spacing: 0.2em;
+  }
+}
+
+/* ============ Mobile reliability & responsive polish ============ */
+html {
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 72px;
+}
+
+body {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  overscroll-behavior-x: none;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: anywhere;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+section[id] {
+  scroll-margin-top: 72px;
+}
+
+.hero-mobile-safe {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+@supports (height: 100dvh) {
+  .hero-mobile-safe {
+    min-height: 100dvh;
+  }
+}
+
+/* Let adjacent sections read as one continuous web page rather than slides. */
+.section-flow {
+  position: relative;
+}
+
+.section-flow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(76vw, 760px);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(200,192,176,.35), transparent);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .ink-card:hover,
+  .poem-scroll:hover,
+  .imagery-card:hover,
+  .poet-figure:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .imagery-card .hover-line {
+    opacity: .72;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .nav-scrolled {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 13vw, 3.5rem);
+    line-height: 1.16;
+    letter-spacing: 0.1em;
+    padding-left: 0.1em;
+    white-space: nowrap;
+  }
+
+  .hero-subtitle {
+    font-size: .78rem;
+    letter-spacing: .18em;
+  }
+
+  .scroll-cue {
+    padding: .5rem .8rem .55rem;
+    letter-spacing: .2em;
+  }
+
+  .ink-seal-lg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .poet-silhouette {
+    width: 128px;
+    height: auto;
+  }
+
+  .section-title {
+    gap: .5rem;
+  }
+
+  .section-title .title-line {
+    width: 18px;
+  }
+
+  .ink-quote-sub {
+    font-size: .75rem;
+  }
+
+  .poem-scroll {
+    min-height: 0;
+  }
+
+  .imagery-card .hover-line {
+    font-size: 9px;
+    line-height: 1.45;
+  }
+
+  .ink-seal-btn,
+  .ink-btn,
+  .ink-btn-filled {
+    min-height: 44px;
+  }
+
+  .poem-paper .ink-poem {
+    font-size: 1rem;
+    line-height: 2.15;
+  }
+
+  .detail-copy {
+    text-align: justify;
+    text-justify: inter-ideograph;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-title {
+    font-size: 2.35rem;
+  }
+
+  .ink-subtitle,
+  .ink-quote-sub {
+    letter-spacing: .12em;
+  }
+
+  .section-title .title-line {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Final editorial pass: less "slide deck", more continuous website
+   ============================================================ */
+.site-canvas {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 8% 22%, rgba(123,139,154,.045), transparent 22rem),
+    radial-gradient(circle at 92% 48%, rgba(184,66,58,.025), transparent 20rem),
+    #F5F0E6;
+}
+
+/* A faint vertical ink trail visually links the long page. */
+.site-canvas::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 82vh;
+  bottom: 8rem;
+  left: max(1.25rem, calc(50% - 38rem));
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(123,139,154,.15) 10%,
+    rgba(123,139,154,.07) 45%,
+    rgba(184,66,58,.09) 72%,
+    transparent
+  );
+}
+
+.section-flow {
+  overflow: clip;
+}
+
+.section-flow::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: min(34rem, 58vw);
+  height: min(20rem, 35vw);
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+  background: rgba(123,139,154,.025);
+}
+
+.site-canvas > .section-flow:nth-of-type(odd)::after {
+  right: -12rem;
+  top: 20%;
+}
+
+.site-canvas > .section-flow:nth-of-type(even)::after {
+  left: -12rem;
+  bottom: 14%;
+}
+
+/* Editorial section headings break the repetitive centered-slide rhythm. */
+.editorial-heading {
+  max-width: 46rem;
+}
+
+.editorial-heading .section-title {
+  justify-content: flex-start;
+}
+
+.editorial-heading .ink-divider {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.editorial-heading.editorial-right {
+  margin-left: auto;
+  text-align: right;
+}
+
+.editorial-heading.editorial-right .section-title {
+  justify-content: flex-end;
+}
+
+.editorial-heading.editorial-right .ink-divider {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Poem cards read like an editorial collection instead of five identical slides. */
+.editorial-poem-grid .poem-scroll {
+  min-height: 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.editorial-poem-grid .poem-featured {
+  min-height: 20rem;
+}
+
+.editorial-poem-grid .poem-featured h3 {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+/* Imagery becomes a clustered interactive index rather than one long button row. */
+.imagery-editorial-grid .imagery-card:nth-child(2),
+.imagery-editorial-grid .imagery-card:nth-child(5) {
+  transform: translateY(1.25rem);
+}
+
+/* Three principles as a magazine-like editorial row, without boxed PPT cards. */
+.poetics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid rgba(200,192,176,.75);
+  border-bottom: 1px solid rgba(200,192,176,.55);
+}
+
+.poetics-note {
+  position: relative;
+  background: rgba(245,240,230,.25);
+}
+
+.poetics-note + .poetics-note {
+  border-left: 1px solid rgba(200,192,176,.55);
+}
+
+.poetics-note::after {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: .8rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(184,66,58,.35), transparent 55%);
+  transform: scaleX(.35);
+  transform-origin: left;
+  transition: transform .45s ease;
+}
+
+.poetics-note:hover::after {
+  transform: scaleX(1);
+}
+
+.random-editorial {
+  position: relative;
+  padding: clamp(2rem, 6vw, 4.5rem) clamp(1rem, 5vw, 4rem);
+  border-top: 1px solid rgba(200,192,176,.6);
+  border-bottom: 1px solid rgba(200,192,176,.45);
+  background: linear-gradient(90deg, transparent, rgba(237,232,218,.38), transparent);
+}
+
+/* Prefer smooth, subtle motion but respect accessibility and lower-end phones. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-canvas::before { display: none; }
+
+  .section-flow::after {
+    width: 18rem;
+    height: 12rem;
+    opacity: .7;
+  }
+
+  .editorial-heading,
+  .editorial-heading.editorial-right {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .editorial-heading .section-title,
+  .editorial-heading.editorial-right .section-title {
+    justify-content: center;
+  }
+
+  .editorial-heading .ink-divider,
+  .editorial-heading.editorial-right .ink-divider {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .imagery-editorial-grid .imagery-card:nth-child(2),
+  .imagery-editorial-grid .imagery-card:nth-child(5) {
+    transform: none;
+  }
+
+  .poetics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .poetics-note + .poetics-note {
+    border-left: 0;
+    border-top: 1px solid rgba(200,192,176,.45);
+  }
+
+  .editorial-poem-grid .poem-scroll,
+  .editorial-poem-grid .poem-featured {
+    min-height: 0;
+  }
+
+  .random-editorial {
+    padding-left: .75rem;
+    padding-right: .75rem;
   }
 }
